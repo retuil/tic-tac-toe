@@ -108,14 +108,27 @@ function clickOnCell(row, col) {
 
 class Board {
     constructor() {
+        this.board = [
+            [EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY],
+        ]
     }
 
     get(row, col) {
-        return 0;
+        return this.board[row][col];
     }
 
     set(symbol, row, col) {
+        this.board[row][col] = symbol;
+    }
 
+    resetAll() {
+        this.board = [
+            [EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY],
+        ]
     }
 
     checkWin() {
