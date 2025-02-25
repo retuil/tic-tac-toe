@@ -32,23 +32,11 @@ function renderGrid(dimension) {
 function cellClickHandler(row, col) {
     // Пиши код тут
     console.log(`Clicked on cell: ${row}, ${col}`);
-    let symbol;
     if (game.get(row, col) === EMPTY) {
-        if (counter % 2 === 0) {
-            symbol = CROSS;
-        } else {
-            symbol = ZERO;
-        }
-        renderSymbolInCell(symbol, row, col);
-        game.set(symbol, row, col);
-        counter++;
+        renderSymbolInCell(CROSS, row, col);
     }
 
-
-    /* Пользоваться методом для размещения символа в клетке так:
-        renderSymbolInCell(ZERO, row, col);
-     */
-    renderSymbolInCell(symbol, row, col);
+    aiMove();
 }
 
 function renderSymbolInCell(symbol, row, col, color = '#333') {
@@ -188,5 +176,43 @@ class Board {
             }
         }
         return null;
+    }
+}
+
+function aiMove(){
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (game.get(i, j) === EMPTY) {
+                game.set(ZERO, i, j);
+                if (game.checkWin() === ZERO) {
+                    return;
+                }
+                game.set(EMPTY, i, j);
+            }
+        }
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (game.get(i, j) === EMPTY) {
+                    game.set(CROSS, i, j);
+                    if (game.checkWin() === CROSS) {
+                        game.set(ZERO, i, j);
+                        return;
+                    }
+                    game.set(EMPTY, i, j);
+                }
+            }
+        }
+
+        let availableMoves = [];
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (game.get(i, j) === EMPTY) {
+                    availableMoves.push({ i, j });
+                }
+            }
+        }
+        let randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+        game.set(ZERO, randomMove.i, randomMove.j);
     }
 }
