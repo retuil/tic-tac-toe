@@ -28,7 +28,8 @@ class Board {
     }
 
     checkWin() {
-        if (this.board[0][0] !== EMPTY
+        let t = this.checkWinBySymbol(CROSS) || this.checkWinBySymbol(ZERO);
+        if (!t && this.board[0][0] !== EMPTY
             && this.board[0][1] !== EMPTY
             && this.board[0][2] !== EMPTY
             && this.board[1][0] !== EMPTY
@@ -38,7 +39,7 @@ class Board {
             && this.board[2][1] !== EMPTY
             && this.board[2][2] !== EMPTY)
             return EMPTY;
-        return this.checkWinBySymbol(CROSS) || this.checkWinBySymbol(ZERO);
+        return t;
     }
 
     checkWinBySymbol(symbol) {
