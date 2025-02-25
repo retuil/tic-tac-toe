@@ -24,7 +24,7 @@ class Board {
     resetAll() {
         let width = this.width;
         let height = this.height;
-        this.board = Array.from({ length: height}, _ => Array.from({length: width}, _ => EMPTY));
+        this.board = Array.from({length: height}, _ => Array.from({length: width}, _ => EMPTY));
     }
 
     checkWin() {
@@ -46,43 +46,43 @@ class Board {
         if (this.board[0][0] === symbol) {
             if (this.board[0][1] === symbol) {
                 if (this.board[0][2] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 0, "y": 0}, {"x": 0, "y": 1}, {"x": 0, "y": 2}]};
                 }
             }
             if (this.board[1][0] === symbol) {
                 if (this.board[2][0] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 0, "y": 0}, {"x": 1, "y": 0}, {"x": 2, "y": 0}]};
                 }
             }
             if (this.board[1][1] === symbol) {
                 if (this.board[2][2] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 0, "y": 0}, {"x": 1, "y": 1}, {"x": 2, "y": 2}]};
                 }
             }
         }
         if (this.board[2][2] === symbol) {
             if (this.board[2][1] === symbol) {
                 if (this.board[2][0] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 2, "y": 2}, {"x": 2, "y": 1}, {"x": 2, "y": 0}]};
                 }
             }
             if (this.board[1][2] === symbol) {
                 if (this.board[0][2] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 2, "y": 2}, {"x": 1, "y": 2}, {"x": 0, "y": 2}]};
                 }
             }
         }
         if (this.board[1][0] === symbol) {
             if (this.board[1][1] === symbol) {
                 if (this.board[1][2] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 1, "y": 0}, {"x": 1, "y": 1}, {"x": 1, "y": 2}]};
                 }
             }
         }
         if (this.board[0][1] === symbol) {
             if (this.board[1][1] === symbol) {
                 if (this.board[2][1] === symbol) {
-                    return symbol;
+                    return {"a": symbol, "b": [{"x": 0, "y": 1}, {"x": 1, "y": 1}, {"x": 2, "y": 1}]};
                 }
             }
         }
