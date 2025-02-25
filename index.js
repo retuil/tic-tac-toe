@@ -147,12 +147,6 @@ function cellClickHandler(row, col) {
 
         alert(result);
     }
-
-
-    /* Пользоваться методом для размещения символа в клетке так:
-        renderSymbolInCell(ZERO, row, col);
-     */
-    renderSymbolInCell(symbol, row, col);
 }
 
 function renderSymbolInCell(symbol, row, col, color = '#333') {
