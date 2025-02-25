@@ -123,6 +123,7 @@ function cellClickHandler(row, col) {
     console.log(`Clicked on cell: ${row}, ${col}`);
     let symbol;
     if (game.get(row, col) === EMPTY && !hasWinner) {
+        //console.log(counter);
         if (counter % 2 === 0) {
             symbol = CROSS;
         } else {
@@ -142,7 +143,7 @@ function renderSymbolInCell(symbol, row, col, color = '#333') {
     targetCell.style.color = color;
 
     let winner = game.checkWin();
-    if (winner['a'] !== null) {
+    if (winner !== null) {
         let result;
         if (winner['a'] === ' ') {
             result = 'Победила дружба.';
