@@ -95,6 +95,7 @@ class Board {
 
 let counter = 0;
 let game = new Board(WIDTH, HEIGHT);
+let hasWinner = false;
 
 
 startGame();
@@ -123,16 +124,24 @@ function cellClickHandler(row, col) {
     // Пиши код тут
     console.log(`Clicked on cell: ${row}, ${col}`);
     let symbol;
-    if (game.get(row, col) === EMPTY) {
+    if (game.get(row, col) === EMPTY && !hasWinner) {
         if (counter % 2 === 0) {
             symbol = CROSS;
         } else {
             symbol = ZERO;
         }
-        renderSymbolInCell(symbol, row, col);
+
         game.set(symbol, row, col);
+        renderSymbolInCell(symbol, row, col);
         counter++;
     }
+}
+
+function renderSymbolInCell(symbol, row, col, color = '#333') {
+    const targetCell = findCell(row, col);
+
+    targetCell.textContent = symbol;
+    targetCell.style.color = color;
 
     let winner = game.checkWin();
     if (winner !== null) {
@@ -144,14 +153,8 @@ function cellClickHandler(row, col) {
         }
 
         alert(result);
+        hasWinner = true;
     }
-}
-
-function renderSymbolInCell(symbol, row, col, color = '#333') {
-    const targetCell = findCell(row, col);
-
-    targetCell.textContent = symbol;
-    targetCell.style.color = color;
 }
 
 function findCell(row, col) {
@@ -166,6 +169,8 @@ function addResetListener() {
 
 function resetClickHandler() {
     console.log('reset!');
+    startGame();
+    game.resetAll();
 }
 
 
