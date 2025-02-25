@@ -32,8 +32,8 @@ function renderGrid(dimension) {
 function cellClickHandler(row, col) {
     // Пиши код тут
     console.log(`Clicked on cell: ${row}, ${col}`);
+    let symbol;
     if (game.get(row, col) === EMPTY) {
-        let symbol;
         if (counter % 2 === 0) {
             symbol = CROSS;
         } else{
@@ -44,13 +44,7 @@ function cellClickHandler(row, col) {
         counter++;
     }
 
-
-
-
-
-    /* Пользоваться методом для размещения символа в клетке так:
-        renderSymbolInCell(ZERO, row, col);
-     */
+    renderSymbolInCell(symbol, row, col);
 }
 
 function renderSymbolInCell(symbol, row, col, color = '#333') {
