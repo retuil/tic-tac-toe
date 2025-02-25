@@ -100,6 +100,9 @@ class Board {
     set(symbol, row, col) {
 
     }
+    resetAll(){
+
+    }
 
     checkWin() {
         return false;
