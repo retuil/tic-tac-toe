@@ -3,8 +3,8 @@ const ZERO = 'O';
 const EMPTY = ' ';
 
 const container = document.getElementById('fieldWrapper');
-const WIDTH = 3;
-const HEIGHT = 3;
+const WIDTH = 10;
+const HEIGHT = 10;
 
 class Board {
     constructor(width, height) {
@@ -106,9 +106,9 @@ function startGame() {
 function renderGrid(dimension) {
     container.innerHTML = '';
 
-    for (let i = 0; i < dimension; i++) {
+    for (let i = 0; i < HEIGHT; i++) {
         const row = document.createElement('tr');
-        for (let j = 0; j < dimension; j++) {
+        for (let j = 0; j < WIDTH; j++) {
             const cell = document.createElement('td');
             cell.textContent = EMPTY;
             cell.addEventListener('click', () => cellClickHandler(i, j));
