@@ -168,6 +168,7 @@ function resetClickHandler() {
     console.log('reset!');
     startGame();
     game.resetAll();
+    hasWinner = false;
 }
 
 
