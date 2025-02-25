@@ -1,6 +1,7 @@
 const CROSS = 'X';
 const ZERO = 'O';
 const EMPTY = ' ';
+const DECIDE_WINNER = {CROSS: CROSS, ZERO: ZERO, EMPTY: 'Победила дружба.'};
 
 let counter = 0;
 let game = Board();
@@ -42,6 +43,11 @@ function cellClickHandler(row, col) {
         renderSymbolInCell(symbol, row, col);
         game.set(symbol, row, col);
         counter++;
+    }
+
+    let winner = game.checkWin();
+    if (winner !== null) {
+        alert(DECIDE_WINNER[winner]);
     }
 
 
