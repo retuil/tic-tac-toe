@@ -169,6 +169,7 @@ function resetClickHandler() {
     startGame();
     game.resetAll();
     hasWinner = false;
+    counter = 0;
 }
 
 
