@@ -142,16 +142,23 @@ function renderSymbolInCell(symbol, row, col, color = '#333') {
     targetCell.style.color = color;
 
     let winner = game.checkWin();
-    if (winner !== null) {
+    if (winner['a'] !== null) {
         let result;
-        if (winner === ' ') {
+        if (winner['a'] === ' ') {
             result = 'Победила дружба.';
         } else {
-            result = winner
+            result = winner['a'];
+            changeColorWinner(winner['b'])
         }
 
         alert(result);
         hasWinner = true;
+    }
+}
+
+function changeColorWinner(cells){
+    for (let cell of cells){
+        findCell(cell['x'], cell['y']).style.color = '#ff0000'
     }
 }
 
