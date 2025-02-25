@@ -168,6 +168,8 @@ function addResetListener() {
 
 function resetClickHandler() {
     console.log('reset!');
+    startGame();
+    game.resetAll();
 }
 
 
