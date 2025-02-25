@@ -131,10 +131,18 @@ function cellClickHandler(row, col) {
         } else {
             symbol = ZERO;
         }
-        renderSymbolInCell(symbol, row, col);
+
         game.set(symbol, row, col);
+        renderSymbolInCell(symbol, row, col);
         counter++;
     }
+}
+
+function renderSymbolInCell(symbol, row, col, color = '#333') {
+    const targetCell = findCell(row, col);
+
+    targetCell.textContent = symbol;
+    targetCell.style.color = color;
 
     let winner = game.checkWin();
     if (winner !== null) {
@@ -149,13 +157,6 @@ function cellClickHandler(row, col) {
         alert(result);
         hasWinner = true;
     }
-}
-
-function renderSymbolInCell(symbol, row, col, color = '#333') {
-    const targetCell = findCell(row, col);
-
-    targetCell.textContent = symbol;
-    targetCell.style.color = color;
 }
 
 function findCell(row, col) {
