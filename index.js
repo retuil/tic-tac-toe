@@ -33,11 +33,11 @@ function renderGrid(dimension) {
 function cellClickHandler(row, col) {
     // Пиши код тут
     console.log(`Clicked on cell: ${row}, ${col}`);
+    let symbol;
     if (game.get(row, col) === EMPTY) {
-        let symbol;
         if (counter % 2 === 0) {
             symbol = CROSS;
-        } else{
+        } else {
             symbol = ZERO;
         }
         renderSymbolInCell(symbol, row, col);
@@ -51,12 +51,10 @@ function cellClickHandler(row, col) {
     }
 
 
-
-
-
     /* Пользоваться методом для размещения символа в клетке так:
         renderSymbolInCell(ZERO, row, col);
      */
+    renderSymbolInCell(symbol, row, col);
 }
 
 function renderSymbolInCell(symbol, row, col, color = '#333') {
@@ -138,6 +136,63 @@ class Board {
     }
 
     checkWin() {
-        return false;
+        if (this.board[0][0] !== EMPTY
+            && this.board[0][1] !== EMPTY
+            && this.board[0][2] !== EMPTY
+            && this.board[1][0] !== EMPTY
+            && this.board[1][1] !== EMPTY
+            && this.board[1][2] !== EMPTY
+            && this.board[2][0] !== EMPTY
+            && this.board[2][1] !== EMPTY
+            && this.board[2][2] !== EMPTY)
+            return EMPTY;
+        return this.checkWinBySymbol(CROSS) || this.checkWinBySymbol(ZERO);
+    }
+
+    checkWinBySymbol(symbol) {
+        if (this.board[0][0] === symbol) {
+            if (this.board[0][1] === symbol) {
+                if (this.board[0][2] === symbol) {
+                    return symbol;
+                }
+            }
+            if (this.board[1][0] === symbol) {
+                if (this.board[2][0] === symbol) {
+                    return symbol;
+                }
+            }
+            if (this.board[1][1] === symbol) {
+                if (this.board[2][2] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        if (this.board[2][2] === symbol) {
+            if (this.board[2][1] === symbol) {
+                if (this.board[2][0] === symbol) {
+                    return symbol;
+                }
+            }
+            if (this.board[1][2] === symbol) {
+                if (this.board[0][2] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        if (this.board[1][0] === symbol) {
+            if (this.board[1][1] === symbol) {
+                if (this.board[1][2] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        if (this.board[0][1] === symbol) {
+            if (this.board[1][1] === symbol) {
+                if (this.board[2][1] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        return null;
     }
 }
