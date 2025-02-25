@@ -1,18 +1,19 @@
 const CROSS = 'X';
 const ZERO = 'O';
 const EMPTY = ' ';
-//const DECIDE_WINNER = {CROSS: CROSS, ZERO: ZERO, EMPTY: };
 
 const container = document.getElementById('fieldWrapper');
-
+const WIDTH = 3;
+const HEIGHT = 3;
 
 class Board {
-    constructor() {
-        this.board = [
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-        ]
+    private height;
+    private width;
+
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+        this.resetAll();
     }
 
     get(row, col) {
@@ -24,11 +25,9 @@ class Board {
     }
 
     resetAll() {
-        this.board = [
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-        ]
+        let width = this.width;
+        let height = this.height;
+        this.board = Array.from({height}, _ => Array.from({width}, _ => EMPTY));
     }
 
     checkWin() {
@@ -95,7 +94,7 @@ class Board {
 
 
 let counter = 0;
-let game = new Board();
+let game = new Board(WIDTH, HEIGHT);
 let hasWinner = false;
 
 
@@ -147,10 +146,9 @@ function renderSymbolInCell(symbol, row, col, color = '#333') {
     let winner = game.checkWin();
     if (winner !== null) {
         let result;
-        if (winner === ' '){
+        if (winner === ' ') {
             result = 'Победила дружба.';
-        }
-        else {
+        } else {
             result = winner
         }
 
