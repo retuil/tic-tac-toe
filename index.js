@@ -36,7 +36,7 @@ function cellClickHandler(row, col) {
     if (game.get(row, col) === EMPTY) {
         if (counter % 2 === 0) {
             symbol = CROSS;
-        } else{
+        } else {
             symbol = ZERO;
         }
         renderSymbolInCell(symbol, row, col);
@@ -44,6 +44,10 @@ function cellClickHandler(row, col) {
         counter++;
     }
 
+
+    /* Пользоваться методом для размещения символа в клетке так:
+        renderSymbolInCell(ZERO, row, col);
+     */
     renderSymbolInCell(symbol, row, col);
 }
 
@@ -126,6 +130,63 @@ class Board {
     }
 
     checkWin() {
-        return false;
+        if (this.board[0][0] !== EMPTY
+            && this.board[0][1] !== EMPTY
+            && this.board[0][2] !== EMPTY
+            && this.board[1][0] !== EMPTY
+            && this.board[1][1] !== EMPTY
+            && this.board[1][2] !== EMPTY
+            && this.board[2][0] !== EMPTY
+            && this.board[2][1] !== EMPTY
+            && this.board[2][2] !== EMPTY)
+            return EMPTY;
+        return this.checkWinBySymbol(CROSS) || this.checkWinBySymbol(ZERO);
+    }
+
+    checkWinBySymbol(symbol) {
+        if (this.board[0][0] === symbol) {
+            if (this.board[0][1] === symbol) {
+                if (this.board[0][2] === symbol) {
+                    return symbol;
+                }
+            }
+            if (this.board[1][0] === symbol) {
+                if (this.board[2][0] === symbol) {
+                    return symbol;
+                }
+            }
+            if (this.board[1][1] === symbol) {
+                if (this.board[2][2] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        if (this.board[2][2] === symbol) {
+            if (this.board[2][1] === symbol) {
+                if (this.board[2][0] === symbol) {
+                    return symbol;
+                }
+            }
+            if (this.board[1][2] === symbol) {
+                if (this.board[0][2] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        if (this.board[1][0] === symbol) {
+            if (this.board[1][1] === symbol) {
+                if (this.board[1][2] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        if (this.board[0][1] === symbol) {
+            if (this.board[1][1] === symbol) {
+                if (this.board[2][1] === symbol) {
+                    return symbol;
+                }
+            }
+        }
+        return null;
     }
 }
