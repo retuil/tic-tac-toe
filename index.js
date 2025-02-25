@@ -7,9 +7,6 @@ const WIDTH = 3;
 const HEIGHT = 3;
 
 class Board {
-    private height;
-    private width;
-
     constructor(width, height) {
         this.width = width;
         this.height = height;
@@ -27,7 +24,7 @@ class Board {
     resetAll() {
         let width = this.width;
         let height = this.height;
-        this.board = Array.from({height}, _ => Array.from({width}, _ => EMPTY));
+        this.board = Array.from({ length: height}, _ => Array.from({length: width}, _ => EMPTY));
     }
 
     checkWin() {
