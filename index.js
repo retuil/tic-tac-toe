@@ -96,6 +96,7 @@ class Board {
 
 let counter = 0;
 let game = new Board();
+let hasWinner = false;
 
 
 startGame();
@@ -124,7 +125,7 @@ function cellClickHandler(row, col) {
     // Пиши код тут
     console.log(`Clicked on cell: ${row}, ${col}`);
     let symbol;
-    if (game.get(row, col) === EMPTY) {
+    if (game.get(row, col) === EMPTY && !hasWinner) {
         if (counter % 2 === 0) {
             symbol = CROSS;
         } else {
@@ -146,6 +147,7 @@ function cellClickHandler(row, col) {
         }
 
         alert(result);
+        hasWinner = true;
     }
 }
 
